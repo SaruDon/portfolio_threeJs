@@ -3,10 +3,15 @@ import React from "react";
 import CanvasLoader from "../components/CanvasLoader";
 import { Suspense } from "react";
 import HackerRoom from "../components/HackerRoom";
-import { PerspectiveCamera } from "@react-three/drei";
+import { PerspectiveCamera, Ring } from "@react-three/drei";
 import { Leva, useControls } from "leva";
 import { useMediaQuery } from "react-responsive";
 import { calculateSizes } from "../constants";
+import Target from "../components/Target";
+import ReactLogo from "../components/ReactLogo";
+import Cube from "../components/Cube";
+import Java from "../components/Java";
+import Rings from "../components/Rings";
 
 const Hero = () => {
   const isMobile = useMediaQuery({
@@ -72,18 +77,25 @@ const Hero = () => {
       </div>
 
       <div className="w-full absolute inset-0">
-        <Leva />
+        {/* <Leva /> */}
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 30]} />
             <HackerRoom
               position={sizes.deskPosition}
-              rotation={[-2.8, 0.12, -3.15]}
+              rotation={[0, 3.14, 0]}
               scale={sizes.deskScale}
-              // position={(x.positionX, x.positionY, x.positionZ)}
+
+              // position={[x.positionX, x.positionY, x.positionZ]}
               // rotation={[x.rotationX, x.rotationY, x.rotationZ]}
               // scale={x.scale}
             />
+            <group>
+              <ReactLogo position={sizes.reactLogoPosition} />
+              <Target position={sizes.targetPosition} />
+              <Java position={sizes.cubePosition} />
+              <Rings position={sizes.ringPosition} />
+            </group>
 
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 10]} intensity={0.7} />
