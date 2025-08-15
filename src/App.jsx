@@ -1,9 +1,11 @@
-import React from "react";
+import Hero from "./sections/Hero.jsx";
+import Navbar from "./sections/Navbar.jsx";
 
 const App = () => {
   return (
-    <div className="flex h-100vh w-100vw justify-center align-center bg-gray-800">
+    <div className="max-w-7xl mx-auto">
       <Navbar />
+      <Hero />
     </div>
   );
 };
