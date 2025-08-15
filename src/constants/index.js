@@ -246,13 +246,12 @@ export const myProjects = [
   },
 ];
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/*******  36b2ca95-114c-482b-bf0f-9e3a0db52d1e  *******/
+
 
 export const calculateSizes = (isSmall, isMobile, isTablet) => {
   return {
-    deskScale: isSmall ? 0.05 : isMobile ? 0.06 : 0.065,
-    deskPosition: isMobile ? [0.5, -4.5, 0] : [0.25, -5.5, 0],
+    deskScale: isSmall ? 0.06 : isMobile ? 0.08 : 0.1,
+    deskPosition: isMobile ? [0.5, -6, 0] : [0.25, -8, 0],
     cubePosition: isSmall ? [4, -5, 0] : isMobile ? [5, -5, 0] : isTablet ? [5, -5, 0] : [9, -5.5, 0],
     reactLogoPosition: isSmall ? [3, 4, 0] : isMobile ? [5, 4, 0] : isTablet ? [5, 4, 0] : [12, 3, 0],
     ringPosition: isSmall ? [-5, 7, 0] : isMobile ? [-10, 10, 0] : isTablet ? [-12, 10, 0] : [-24, 10, 0],

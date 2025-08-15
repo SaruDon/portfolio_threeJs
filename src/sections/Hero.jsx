@@ -20,45 +20,45 @@ const Hero = () => {
     query: "(max-width: 440px)",
   });
 
-  // const x = useControls({
-  //   positionX: {
-  //     value: 2.5,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   positionY: {
-  //     value: 2.5,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   positionZ: {
-  //     value: 2.5,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   rotationX: {
-  //     value: 0,
-  //     min: -Math.PI,
-  //     max: Math.PI,
-  //   },
-  //   rotationY: {
-  //     value: 0,
-  //     min: -Math.PI,
-  //     max: Math.PI,
-  //   },
-  //   rotationZ: {
-  //     value: 0,
-  //     min: -Math.PI,
-  //     max: Math.PI,
-  //   },
-  //   scale: {
-  //     value: 1,
-  //     min: 0.1,
-  //     max: 10,
-  //   },
-  // });
+  const x = useControls({
+    positionX: {
+      value: 2.5,
+      min: -10,
+      max: 10,
+    },
+    positionY: {
+      value: 2.5,
+      min: -10,
+      max: 10,
+    },
+    positionZ: {
+      value: 2.5,
+      min: -10,
+      max: 10,
+    },
+    rotationX: {
+      value: 0,
+      min: -Math.PI,
+      max: Math.PI,
+    },
+    rotationY: {
+      value: 0,
+      min: -Math.PI,
+      max: Math.PI,
+    },
+    rotationZ: {
+      value: 0,
+      min: -Math.PI,
+      max: Math.PI,
+    },
+    scale: {
+      value: 1,
+      min: 0.1,
+      max: 10,
+    },
+  });
 
-  const sizes = calculateSizes;
+  const sizes = calculateSizes(isMobile, isTablet, isSmall);
 
   return (
     <section className="min-h-screen w-full flex flex-col relative">
@@ -72,14 +72,17 @@ const Hero = () => {
       </div>
 
       <div className="w-full absolute inset-0">
-        {/* <Leva /> */}
+        <Leva />
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 30]} />
             <HackerRoom
               position={sizes.deskPosition}
-              rotation={sizes.deskRotation}
+              rotation={[-2.8, 0.12, -3.15]}
               scale={sizes.deskScale}
+              // position={(x.positionX, x.positionY, x.positionZ)}
+              // rotation={[x.rotationX, x.rotationY, x.rotationZ]}
+              // scale={x.scale}
             />
 
             <ambientLight intensity={0.5} />
