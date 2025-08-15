@@ -4,12 +4,11 @@ import CanvasLoader from "../components/CanvasLoader";
 import { Suspense } from "react";
 import HackerRoom from "../components/HackerRoom";
 import { PerspectiveCamera, Ring } from "@react-three/drei";
-import { Leva, useControls } from "leva";
+// import { Leva, useControls } from "leva";
 import { useMediaQuery } from "react-responsive";
 import { calculateSizes } from "../constants";
 import Target from "../components/Target";
 import ReactLogo from "../components/ReactLogo";
-import Cube from "../components/Cube";
 import Java from "../components/Java";
 import Rings from "../components/Rings";
 import HeroCamera from "../components/HeroCamera";
@@ -26,45 +25,45 @@ const Hero = () => {
     query: "(max-width: 440px)",
   });
 
-  const x = useControls({
-    positionX: {
-      value: 2.5,
-      min: -10,
-      max: 10,
-    },
-    positionY: {
-      value: 2.5,
-      min: -10,
-      max: 10,
-    },
-    positionZ: {
-      value: 2.5,
-      min: -10,
-      max: 10,
-    },
-    rotationX: {
-      value: 0,
-      min: -Math.PI,
-      max: Math.PI,
-    },
-    rotationY: {
-      value: 0,
-      min: -Math.PI,
-      max: Math.PI,
-    },
-    rotationZ: {
-      value: 0,
-      min: -Math.PI,
-      max: Math.PI,
-    },
-    scale: {
-      value: 1,
-      min: 0.1,
-      max: 10,
-    },
-  });
+  // const x = useControls({
+  //   positionX: {
+  //     value: 2.5,
+  //     min: -10,
+  //     max: 10,
+  //   },
+  //   positionY: {
+  //     value: 2.5,
+  //     min: -10,
+  //     max: 10,
+  //   },
+  //   positionZ: {
+  //     value: 2.5,
+  //     min: -10,
+  //     max: 10,
+  //   },
+  //   rotationX: {
+  //     value: 0,
+  //     min: -Math.PI,
+  //     max: Math.PI,
+  //   },
+  //   rotationY: {
+  //     value: 0,
+  //     min: -Math.PI,
+  //     max: Math.PI,
+  //   },
+  //   rotationZ: {
+  //     value: 0,
+  //     min: -Math.PI,
+  //     max: Math.PI,
+  //   },
+  //   scale: {
+  //     value: 1,
+  //     min: 0.1,
+  //     max: 10,
+  //   },
+  // });
 
-  const sizes = calculateSizes(isMobile, isTablet, isSmall);
+  const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
   return (
     <section className="min-h-screen w-full flex flex-col relative">
@@ -72,7 +71,7 @@ const Hero = () => {
         <p className="sm:text-3xl text-3xl text-white text-center font-generalsans">
           Hi, I'm Sarvesh Khamkar <span className="waving-hand">👋</span>
         </p>
-        <p className="text-gray_gradient font-generalsans sm:text-5xl text-l font-bold text-center">
+        <p className="text-gray_gradient font-generalsans sm:text-5xl text-xl font-bold text-center">
           Turning ideas into scalable, user-friendly applications
         </p>
       </div>
@@ -81,34 +80,28 @@ const Hero = () => {
         {/* <Leva /> */}
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
-            <PerspectiveCamera makeDefault position={[0, 0, 30]} />
-
+            <PerspectiveCamera makeDefault position={[0, 0, 20]} />
+            {/* position={[x.positionX, x.positionY, x.positionZ]}
+             rotation={[x.rotationX, x.rotationY, x.rotationZ]}
+             scale={x.scale} */}
             <HeroCamera isMobile={isMobile}>
               <HackerRoom
                 position={sizes.deskPosition}
-                rotation={[0, 3.14, 0]}
+                rotation={[0, -Math.PI, 0]}
                 scale={sizes.deskScale}
-
-                // position={[x.positionX, x.positionY, x.positionZ]}
-                // rotation={[x.rotationX, x.rotationY, x.rotationZ]}
-                // scale={x.scale}
               />
             </HeroCamera>
-
             <group>
               <ReactLogo position={sizes.reactLogoPosition} />
               <Target position={sizes.targetPosition} />
               <Java position={sizes.cubePosition} />
               <Rings position={sizes.ringPosition} />
             </group>
-
-            <ambientLight intensity={0.5} />
+            <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={0.7} />
           </Suspense>
         </Canvas>
       </div>
-
-      <div className="w-full h-full absolute inset-0"></div>
     </section>
   );
 };
